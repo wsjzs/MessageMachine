@@ -99,9 +99,9 @@ class MessageMachine():
             # self.driver.switch_to.alert.accept()
 
 
-def test():
-    #phone = 13328383933
-    phone='15005925793'
+def start():
+    phone='******' #短信接收号码
+    send_rounds=20 #发送几轮短信(循环json文件的次数)
     root = sys.path[0]
     d_path = root+r'\chromedriver.exe'
     options = webdriver.ChromeOptions()
@@ -109,13 +109,12 @@ def test():
     prefs = {'profile.managed_default_content_settings.images':2}
     options.add_experimental_option('prefs', prefs)
     driver = webdriver.Chrome(executable_path=d_path,options=options)
-
     a = MessageMachine(driver, phone)
-    # a.setInterval(4)
+    # a.setInterval(4) #设置每次发送间隔
     with open(root+r'\data.json','r') as f:
         data =json.load(f)
         a.addCommands(data)
-        for i in range(10):
+        for i in range(send_rounds):
             a.executeAll()
 
-test()
+start()

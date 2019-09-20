@@ -99,7 +99,7 @@ class MessageMachine():
             # self.driver.switch_to.alert.accept()
 
 
-def test():
+def start():
     phone='*******' #待接收短信的号码
     send_rounds=30  #循环json文件的次数
     root = sys.path[0]
@@ -118,4 +118,4 @@ def test():
         for i in range(send_rounds):
             a.executeAll()
 
-test()
+start()
